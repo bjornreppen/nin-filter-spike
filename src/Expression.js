@@ -38,8 +38,7 @@ const Expression = ({ onAdd, onClick, onDelete, domene: fallback, filter }) => {
     <>
       <ListSubheader>Utvalg</ListSubheader>
       <div style={{ _display: "inline-flex" }}>
-        {r}
-        <Add onClick={onAdd} />
+        {r} <Add onClick={onAdd} />
       </div>
     </>
   );

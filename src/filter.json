@@ -1,9 +1,57 @@
 {
-  "verneform": "Verneform",
-  "verneplan": "Verneplan",
-  "forvaltningsmyndighet": "Forvaltningsmyndighet",
-  "fylke": "Fylke",
-  "vernet_år": "Vernet tidspunkt",
-  "truet_vurdering": "Truet vurdering",
-  "iucn": "Verneområdets kategori (IUCN)"
+  "verneform": {
+    "tittel": "Verneform",
+    "verdier": [
+      "Biotopvern",
+      "Landskapsverneområder",
+      "Naturreservat",
+      "Naturminne",
+      "Nasjonalpark"
+    ]
+  },
+  "verneplan": {
+    "tittel": "Verneplan",
+    "verdier": [
+      "Verneplan for myr",
+      "Verneplan for sjøfugl",
+      "Skogvern",
+      "Marin verneplan",
+      "Kvartærgeologi",
+      "Verneplan for nasjonalparker"
+    ]
+  },
+  "forvaltningsmyndighet": {
+    "tittel": "Forvaltningsmyndighet",
+    "verdier": [
+      "Fylkesmann",
+      "Kommune",
+      "Nasjonalparkstyre",
+      "Verneområdestyre"
+    ]
+  },
+  "fylke": {
+    "tittel": "Fylke",
+    "verdier": [
+      "Trøndelag fylke",
+      "Nordland fylke",
+      "Troms fylke",
+      "Finnmark fylke"
+    ]
+  },
+  "vernet_år": {
+    "tittel": "Vernet tidspunkt",
+    "verdier": [1960, 1970, 1980, 1990, 2000, 2010]
+  },
+  "truet_vurdering": {
+    "tittel": "Truet vurdering",
+    "verdier": ["Ikke truet", "Truet", "Ikke vurdert"]
+  },
+  "iucn": {
+    "tittel": "Verneområdets kategori (IUCN)",
+    "verdier": [
+      "Vern av naturlige attraksjoner",
+      "Vern av økosystemer og friluftsliv",
+      "Vern gjennom aktiv forvaltning"
+    ]
+  }
 }

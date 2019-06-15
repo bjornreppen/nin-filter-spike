@@ -6,7 +6,7 @@ const VelgVariabel = ({ onSelect }) => (
   <List>
     <ListSubheader>Filtrer på</ListSubheader>
     {Object.entries(filter).map(([k, v]) => (
-      <Element key={k} primary={v} onClick={() => onSelect(k)} />
+      <Element key={k} primary={v.tittel} onClick={() => onSelect(k)} />
     ))}
   </List>
 );

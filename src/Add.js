@@ -7,7 +7,7 @@ const Add = ({ onClick }) => (
   <Fab
     color="primary"
     size="small"
-    style={{ _position: "absolute", _bottom: 48, _right: 48 }}
+    style={{ _position: "relative", zIndex: 100, _left: 222, _top: 28 }}
     onClick={onClick}
   >
     <FilterListIcon />
