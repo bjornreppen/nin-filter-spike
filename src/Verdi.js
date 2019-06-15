@@ -3,13 +3,15 @@ import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
 import filter from "./filter";
 
 const Verdi = ({ variabel, onSelect }) => {
-  const verdier = Object.values(filter[variabel].verdier);
+  const verdier = filter[variabel].verdier;
+  console.log(verdier);
   return (
     <List>
       <ListSubheader>{variabel.replace("_", " ")}</ListSubheader>
-      {Object.entries(verdier).map(([k, v]) => (
-        <Element key={v} primary={v} onClick={() => onSelect(k)} />
-      ))}
+      {Object.entries(verdier).map(([k, v]) => {
+        console.log(k, v);
+        return <Element key={k} primary={v} onClick={() => onSelect(k)} />;
+      })}
     </List>
   );
 };

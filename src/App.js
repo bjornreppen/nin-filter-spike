@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import VelgVariabel from "./VelgVariabel";
-import VelgVerdi from "./VelgVerdi";
+import Verdi from "./Verdi";
 import Expression from "./Expression";
 import ResultatContainer from "./ResultatContainer";
 import { Paper } from "@material-ui/core";
@@ -9,7 +9,7 @@ function App() {
   const [page, setPage] = useState("expression");
   const [variabel, setVariabel] = useState();
   const [filter, setFilter] = useState({
-    verneform: "VV-VF-LV",
+    verneform: "VV-VF-LVO",
     vernet_år: 1990,
     fylke: "50",
     forvaltningsmyndighet: "VV-FM-FM",
@@ -47,7 +47,7 @@ function App() {
         />
       )}
       {page === "verdi" && (
-        <VelgVerdi
+        <Verdi
           variabel={variabel}
           onSelect={verdi => {
             filter[variabel] = verdi;
