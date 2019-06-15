@@ -1,17 +1,19 @@
+import { ListSubheader } from "@material-ui/core";
 import React from "react";
 import { Chip } from "@material-ui/core";
+import Add from "./Add";
 
 const template = [
   { felt: "verneform", pre: "", fallback: true },
   { felt: "verneplan", pre: "vernet under" },
   { felt: "forvaltningsmyndighet", pre: "som forvaltes av" },
   { felt: "vernet_år", pre: "opprettet i år" },
-  { felt: "fylke", pre: "som enten helt eller delvis ligger innenfor" },
+  { felt: "fylke", pre: "som helt eller delvis ligger i" },
   { felt: "truet_vurdering", pre: "vurdert som" },
   { felt: "iucn", pre: "med IUCN status" }
 ];
 
-const Expression = ({ onClick, onDelete, domene: fallback, filter }) => {
+const Expression = ({ onAdd, onClick, onDelete, domene: fallback, filter }) => {
   let r = template.map(t => {
     if (!filter[t.felt]) {
       if (t.fallback)
@@ -32,12 +34,22 @@ const Expression = ({ onClick, onDelete, domene: fallback, filter }) => {
       />
     );
   });
-  return <div style={{ _display: "inline-flex" }}>{r}</div>;
+  return (
+    <>
+      <ListSubheader>Utvalg</ListSubheader>
+      <div style={{ _display: "inline-flex" }}>
+        {r}
+        <Add onClick={onAdd} />
+      </div>
+    </>
+  );
 };
 
 const Kriterie = ({ preText, label, onClick, onDelete }) => (
   <>
-    <span style={{ whiteSpace: "nowrap", marginRight: 8 }}>{preText}</span>
+    {preText && (
+      <span style={{ whiteSpace: "nowrap", marginRight: 8 }}>{preText}</span>
+    )}
     <Chip
       style={{ marginRight: 8, marginBottom: 2, marginTop: 2 }}
       label={label}

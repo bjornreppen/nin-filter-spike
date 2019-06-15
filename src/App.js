@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Add from "./Add";
 import VelgVariabel from "./VelgVariabel";
 import VelgVerdi from "./VelgVerdi";
 import Expression from "./Expression";
+import ResultatContainer from "./ResultatContainer";
+import { Paper } from "@material-ui/core";
 
 function App() {
   const [page, setPage] = useState("expression");
@@ -17,20 +18,24 @@ function App() {
     verneplan: "Verneplan for myr"
   });
   return (
-    <div style={{ width: 400, margin: 24 }}>
+    <Paper style={{ width: 470, padding: 16, margin: 24 }}>
       {page === "expression" && (
-        <Expression
-          domene="Naturvernområder"
-          filter={filter}
-          onClick={variabel => {
-            setVariabel(variabel);
-            setPage("verdi");
-          }}
-          onDelete={variabel => {
-            delete filter[variabel];
-            setFilter(Object.assign({}, filter));
-          }}
-        />
+        <>
+          <Expression
+            domene="Naturvernområder"
+            filter={filter}
+            onClick={variabel => {
+              setVariabel(variabel);
+              setPage("verdi");
+            }}
+            onAdd={() => setPage("variable")}
+            onDelete={variabel => {
+              delete filter[variabel];
+              setFilter(Object.assign({}, filter));
+            }}
+          />
+          <ResultatContainer filter={filter} />
+        </>
       )}
       {page === "variable" && (
         <VelgVariabel
@@ -50,8 +55,7 @@ function App() {
           }}
         />
       )}
-      <Add onClick={() => setPage("variable")} />
-    </div>
+    </Paper>
   );
 }
 

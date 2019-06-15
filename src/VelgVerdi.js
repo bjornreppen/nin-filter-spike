@@ -35,7 +35,7 @@ const verdier = {
 
 const Verdi = ({ variabel, onSelect }) => (
   <List>
-    <ListSubheader>{variabel}</ListSubheader>
+    <ListSubheader>{variabel.replace("_", " ")}</ListSubheader>
     {Object.values(verdier[variabel]).map(v => (
       <Element key={v} primary={v} onClick={() => onSelect(v)} />
     ))}

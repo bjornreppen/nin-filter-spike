@@ -13,7 +13,7 @@ const variabler = {
 
 const VelgVariabel = ({ onSelect }) => (
   <List>
-    <ListSubheader>Variabel</ListSubheader>
+    <ListSubheader>Filtrer på</ListSubheader>
     {Object.entries(variabler).map(([k, v]) => (
       <Element key={k} primary={v} onClick={() => onSelect(k)} />
     ))}
