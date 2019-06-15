@@ -10,7 +10,7 @@ function App() {
   const [variabel, setVariabel] = useState();
   const [filter, setFilter] = useState({
     verneform: "VV-VF-LVO",
-    vernet_år: 1990,
+    vernet_år: "1990",
     fylke: "50",
     forvaltningsmyndighet: "VV-FM-FM",
     truet_vurdering: "VV-TV-T",

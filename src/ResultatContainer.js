@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Resultatliste from "./Resultatliste";
+import filterdef from "./filter";
 
 const ResultatContainer = ({ filter }) => {
   const [områder, setOmråder] = useState([]);
@@ -16,28 +17,22 @@ const ResultatContainer = ({ filter }) => {
 
 function filtrer(o, filter) {
   if (filter.vernet_år) {
-    const year = new Date(o.revisjon.dato.vernet).getFullYear();
+    const year = new Date(o.revisjon.dato.vernet).getFullYear().toString();
+    console.log(filter.vernet_år);
     if (year !== filter.vernet_år) return false;
   }
   if (filter.fylke) {
     let match = false;
     for (var kommune of o.geografi.kommune) {
-      const fylke = parseInt(kommune.substring(0, 2));
-      if (fylke === fylkesnummer[filter.fylke]) match = true;
+      const fylke = kommune.substring(0, 2);
+      if (fylke === filter.fylke) match = true;
     }
     if (!match) return false;
   }
   if (filter.truet_vurdering) {
-    if (o.vurdering.truet.navn.nob !== filter.truet_vurdering) return false;
+    if (o.vurdering.truet.kode !== filter.truet_vurdering) return false;
   }
   return true;
 }
-
-const fylkesnummer = {
-  "Trøndelag fylke": 50,
-  "Nordland fylke": 18,
-  "Troms fylke": 19,
-  "Finnmark fylke": 20
-};
 
 export default ResultatContainer;
