@@ -5,7 +5,7 @@ const Resultatliste = ({ items }) => {
   return (
     <List>
       <ListSubheader>{items.length} områder</ListSubheader>
-      {items.map(e => (
+      {items.slice(0, 200).map(e => (
         <ListItem
           dense
           button

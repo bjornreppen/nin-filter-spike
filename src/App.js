@@ -9,6 +9,7 @@ import ResultatContainer from "./ResultatContainer";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import {
   Card,
+  CardMedia,
   Button,
   Collapse,
   CardActionArea,
@@ -43,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(true);
   const [page, setPage] = useState("expression");
   const [variabel, setVariabel] = useState();
   const [filter, setFilter] = useState({
@@ -65,29 +66,22 @@ function App() {
       <Card style={{ width: 470, margin: 24 }}>
         {(true || page === "expression") && (
           <>
-            <CardActionArea>
+            <CardActionArea
+              _onClick={() =>
+                setPage(page === "expression" ? "variable" : "expression")
+              }
+            >
+              <CardMedia
+                component="img"
+                alt="---"
+                height="210"
+                image="cardmedia.jpg"
+                title="--"
+              />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
                   Naturvernområder
                 </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Lizards are a widespread group of squamate reptiles, with over
-                  6,000 species, ranging across all continents except Antarctica
-                </Typography>
-                <Expression
-                  domene="Naturvernområder"
-                  filter={filter}
-                  onClick={variabel => {
-                    setVariabel(variabel);
-                    setPage("verdi");
-                  }}
-                  onAdd={() => setPage("variable")}
-                  onDelete={variabel => {
-                    delete filter[variabel];
-                    setFilter(Object.assign({}, filter));
-                    setPage("expression");
-                  }}
-                />
                 {page === "variable" && (
                   <Variabel
                     onSelect={variabel => {
@@ -101,11 +95,27 @@ function App() {
                     variabel={variabel}
                     onSelect={verdi => {
                       filter[variabel] = verdi;
-                      setFilter(filter);
+                      setFilter(Object.assign({}, filter));
                       setPage("expression");
                     }}
                   />
                 )}
+                <Expression
+                  domene="Naturvernområder"
+                  filter={filter}
+                  onClick={variabel => {
+                    setVariabel(variabel);
+                    setPage("verdi");
+                  }}
+                  onAdd={() =>
+                    setPage(page === "expression" ? "variable" : "expression")
+                  }
+                  onDelete={variabel => {
+                    delete filter[variabel];
+                    setFilter(Object.assign({}, filter));
+                    setPage("expression");
+                  }}
+                />
               </CardContent>
             </CardActionArea>
             <CardActions>

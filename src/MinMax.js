@@ -18,7 +18,7 @@ function pretty(v, enhet) {
   const l10 = Math.log10(v);
   const index = Math.trunc(l10 / 3);
   const num = v * Math.pow(0.1, 3 * index);
-  return num.toFixed(1) + prefixes[index];
+  return num.toFixed(1) + " " + prefixes[index];
 }
 
 const marks = [

@@ -1,14 +1,14 @@
 {
   "verneform": {
     "tittel": "Verneform",
-    "pre": "",
+    "pre": "Alle",
     "fallback": true,
     "verdier": {
       "VV-VF-BV": "Biotopvern",
       "VV-VF-LVO": "Landskapsverneområder",
-      "VV-VF-NR": "Naturreservat",
-      "VV-VF-NM": "Naturminne",
-      "VV-VF-NP": "Nasjonalpark"
+      "VV-VF-NR": "Naturreservater",
+      "VV-VF-NM": "Naturminner",
+      "VV-VF-NP": "Nasjonalparker"
     }
   },
   "verneplan": {
@@ -46,7 +46,7 @@
   },
   "truet_vurdering": {
     "tittel": "Truet vurdering",
-    "pre": "vurdert som",
+    "pre": "vurdert",
     "verdier": {
       "VV-TV-IT": "Ikke truet",
       "VV-TV-T": "Truet",

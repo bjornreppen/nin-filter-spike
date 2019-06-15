@@ -3,18 +3,26 @@ import Resultatliste from "./Resultatliste";
 
 const ResultatContainer = ({ filter }) => {
   const [områder, setOmråder] = useState([]);
+  const [filtrert, setFiltrert] = useState([]);
   useEffect(() => {
+    console.log("load");
     fetch("naturvernområde.json").then(r =>
       r.json().then(json => setOmråder(json.items))
     );
   }, []);
+  useEffect(() => {
+    console.log("filter");
+    const e = områder.filter(o => erTreff(o, filter));
+    const sortert = e.sort((a, b) => (a.navn.nob > b.navn.nob ? 1 : -1));
+    setFiltrert(sortert);
+  }, [områder, filter]);
 
-  const e = områder.filter(o => filtrer(o, filter));
-  const sortert = e.sort((a, b) => (a.navn.nob > b.navn.nob ? 1 : -1));
-  return <Resultatliste items={sortert} />;
+  return <Resultatliste items={filtrert} />;
 };
 
-function filtrer(o, filter) {
+async function filtrer(områder) {}
+
+function erTreff(o, filter) {
   if (filter.verneform) {
     if (!o.verneform) return false;
     if (o.verneform.kode !== filter.verneform) return false;

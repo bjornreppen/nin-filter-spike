@@ -1,4 +1,4 @@
-import { Card, ListSubheader } from "@material-ui/core";
+import { Typography, ListSubheader } from "@material-ui/core";
 import React from "react";
 import { Chip } from "@material-ui/core";
 import Add from "./Add";
@@ -6,12 +6,12 @@ import filterdef from "./filter";
 
 const template = [
   "verneform",
+  "vernet_år",
   "verneplan",
   "forvaltningsmyndighet",
-  "vernet_år",
-  "fylke",
   "truet_vurdering",
-  "iucn"
+  "iucn",
+  "fylke"
 ];
 
 const Expression = ({ onAdd, onClick, onDelete, fallback, filter }) => {
@@ -40,10 +40,9 @@ const Expression = ({ onAdd, onClick, onDelete, fallback, filter }) => {
   });
   return (
     <>
+      <Add onClick={onAdd} />
       <ListSubheader>{fallback}</ListSubheader>
-      <div style={{ _display: "inline-flex" }}>
-        {r} <Add onClick={onAdd} />
-      </div>
+      <div style={{ _display: "inline-flex" }}>{r}</div>
     </>
   );
 };
@@ -51,9 +50,14 @@ const Expression = ({ onAdd, onClick, onDelete, fallback, filter }) => {
 const Kriterie = ({ preText, label, onClick, onDelete }) => (
   <>
     {preText && (
-      <span style={{ whiteSpace: "nowrap", marginRight: 4, fontSize: 13 }}>
+      <Typography
+        variant="body2"
+        color="textSecondary"
+        component="span"
+        style={{ _whiteSpace: "nowrap", marginRight: 4, _fontSize: 13 }}
+      >
         {preText}
-      </span>
+      </Typography>
     )}
     <Chip
       style={{ marginRight: 8, marginBottom: 6, marginTop: 2 }}
