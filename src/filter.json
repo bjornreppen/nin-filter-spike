@@ -3,63 +3,73 @@
     "tittel": "Verneform",
     "pre": "",
     "fallback": true,
-    "verdier": [
-      "Biotopvern",
-      "Landskapsverneområder",
-      "Naturreservat",
-      "Naturminne",
-      "Nasjonalpark"
-    ]
+    "verdier": {
+      "VV-VF-BV": "Biotopvern",
+      "VV-VF-LVO": "Landskapsverneområder",
+      "VV-VF-NR": "Naturreservat",
+      "VV-VF-NM": "Naturminne",
+      "VV-VF-NP": "S"
+    }
   },
   "verneplan": {
     "tittel": "Verneplan",
     "pre": "vernet etter",
-    "verdier": [
-      "Verneplan for myr",
-      "Verneplan for sjøfugl",
-      "Skogvern",
-      "Marin verneplan",
-      "Kvartærgeologi",
-      "Verneplan for nasjonalparker"
-    ]
+    "verdier": {
+      "VV-VP-VM": "Verneplan for myr",
+      "VV-VP-SF": "Verneplan for sjøfugl",
+      "VV-VP-SV": "Skogvern",
+      "VV-VP-MV": "Marin verneplan",
+      "VV-VP-NP": "Verneplan for nasjonalparker"
+    }
   },
   "forvaltningsmyndighet": {
     "tittel": "Forvaltningsmyndighet",
     "pre": "som forvaltes av",
-    "verdier": [
-      "Fylkesmann",
-      "Kommune",
-      "Nasjonalparkstyre",
-      "Verneområdestyre"
-    ]
+    "verdier": {
+      "VV-FM-FM": "Fylkesmann",
+      "VV-FM-KO": "Kommune",
+      "VV-FM-NP": "Nasjonalparkstyre",
+      "VV-FM-VO": "Verneområdestyre"
+    }
   },
   "fylke": {
     "tittel": "Fylke",
     "pre": "som helt eller delvis ligger i",
-    "verdier": [
-      "Trøndelag fylke",
-      "Nordland fylke",
-      "Troms fylke",
-      "Finnmark fylke"
-    ]
+    "verdier": {
+      "50": "Trøndelag fylke",
+      "18": "Nordland fylke",
+      "19": "Troms fylke",
+      "20": "Finnmark fylke"
+    }
   },
   "vernet_år": {
     "tittel": "Vernet tidspunkt",
     "pre": "opprettet i år",
-    "verdier": [1960, 1970, 1980, 1990, 2000, 2010]
+    "verdier": {
+      "1960": 1960,
+      "1970": 1970,
+      "1980": 1980,
+      "1990": 1990,
+      "2000": 2000,
+      "2010": 2010
+    }
   },
   "truet_vurdering": {
     "tittel": "Truet vurdering",
     "pre": "vurdert som",
-    "verdier": ["Ikke truet", "Truet", "Ikke vurdert"]
+    "verdier": {
+      "VV-TV-IT": "Ikke truet",
+      "VV-TV-T": "Truet",
+      "VV-TV-IV": "Ikke vurdert"
+    }
   },
   "iucn": {
     "tittel": "Verneområdets kategori (IUCN)",
     "pre": "med IUCN kategori",
-    "verdier": [
-      "Vern av naturlige attraksjoner",
-      "Vern av økosystemer og friluftsliv",
-      "Vern gjennom aktiv forvaltning"
-    ]
+    "verdier": {
+      "VV-PA-III": "Vern av naturlige attraksjoner",
+      "VV-PA-II": "Vern av økosystemer og friluftsliv",
+      "VV-PA-IV": "Vern gjennom aktiv forvaltning"
+    }
   }
 }

@@ -26,11 +26,13 @@ const Expression = ({ onAdd, onClick, onDelete, domene: fallback, filter }) => {
         );
       return null;
     }
+    const kode = filter[k];
+    const label = filterdef[k].verdier[kode];
     return (
       <Kriterie
         key={k}
         preText={t.pre}
-        label={filter[k]}
+        label={label}
         onClick={() => onClick(k)}
         onDelete={() => onDelete(k)}
       />

@@ -9,14 +9,15 @@ function App() {
   const [page, setPage] = useState("expression");
   const [variabel, setVariabel] = useState();
   const [filter, setFilter] = useState({
-    verneform: "Landskapsverneområder",
+    verneform: "VV-VF-LV",
     vernet_år: 1990,
-    fylke: "Troms fylke",
-    forvaltningsmyndighet: "Fylkesmann",
-    truet_vurdering: "Truet",
-    iucn: "Vern av naturlige attraksjoner",
-    verneplan: "Verneplan for myr"
+    fylke: "50",
+    forvaltningsmyndighet: "VV-FM-FM",
+    truet_vurdering: "VV-TV-T",
+    iucn: "VV-PA-II",
+    verneplan: "VV-VP-VM"
   });
+
   return (
     <Paper style={{ width: 470, padding: 16, margin: 24 }}>
       {page === "expression" && (
