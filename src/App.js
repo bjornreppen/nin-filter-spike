@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import VelgVariabel from "./VelgVariabel";
+import Variabel from "./VelgVariabel";
 import Verdi from "./Verdi";
 import Expression from "./Expression";
 import ResultatContainer from "./ResultatContainer";
@@ -39,7 +39,7 @@ function App() {
         </>
       )}
       {page === "variable" && (
-        <VelgVariabel
+        <Variabel
           onSelect={variabel => {
             setVariabel(variabel);
             setPage("verdi");

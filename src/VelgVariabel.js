@@ -2,7 +2,7 @@ import React from "react";
 import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
 import filter from "./filter";
 
-const VelgVariabel = ({ onSelect }) => (
+const Variabel = ({ onSelect }) => (
   <List>
     <ListSubheader>Filtrer på</ListSubheader>
     {Object.entries(filter).map(([k, v]) => (
@@ -17,4 +17,4 @@ const Element = ({ key, primary, onClick }) => (
   </ListItem>
 );
 
-export default VelgVariabel;
+export default Variabel;

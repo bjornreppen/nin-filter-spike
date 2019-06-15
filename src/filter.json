@@ -8,7 +8,7 @@
       "VV-VF-LVO": "Landskapsverneområder",
       "VV-VF-NR": "Naturreservat",
       "VV-VF-NM": "Naturminne",
-      "VV-VF-NP": "S"
+      "VV-VF-NP": "Nasjonalpark"
     }
   },
   "verneplan": {
@@ -24,22 +24,12 @@
   },
   "forvaltningsmyndighet": {
     "tittel": "Forvaltningsmyndighet",
-    "pre": "som forvaltes av",
+    "pre": "forvaltet av",
     "verdier": {
       "VV-FM-FM": "Fylkesmann",
       "VV-FM-KO": "Kommune",
       "VV-FM-NP": "Nasjonalparkstyre",
       "VV-FM-VO": "Verneområdestyre"
-    }
-  },
-  "fylke": {
-    "tittel": "Fylke",
-    "pre": "som helt eller delvis ligger i",
-    "verdier": {
-      "50": "Trøndelag fylke",
-      "18": "Nordland fylke",
-      "19": "Troms fylke",
-      "20": "Finnmark fylke"
     }
   },
   "vernet_år": {
@@ -71,5 +61,22 @@
       "VV-PA-II": "Vern av økosystemer og friluftsliv",
       "VV-PA-IV": "Vern gjennom aktiv forvaltning"
     }
+  },
+  "fylke": {
+    "tittel": "Fylke",
+    "pre": "som helt eller delvis ligger i",
+    "verdier": {
+      "50": "Trøndelag fylke",
+      "18": "Nordland fylke",
+      "19": "Troms fylke",
+      "20": "Finnmark fylke"
+    }
+  },
+  "areal": {
+    "tittel": "Areal",
+    "type": "range",
+    "min": 0,
+    "max": 1000,
+    "enhet": "km²"
   }
 }

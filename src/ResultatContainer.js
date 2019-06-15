@@ -16,6 +16,19 @@ const ResultatContainer = ({ filter }) => {
 };
 
 function filtrer(o, filter) {
+  if (filter.verneform) {
+    if (!o.verneform) return false;
+    if (o.verneform.kode !== filter.verneform) return false;
+  }
+  if (filter.verneplan) {
+    if (!o.verneplan) return false;
+    if (o.verneplan.kode !== filter.verneplan) return false;
+  }
+  if (filter.forvaltningsmyndighet) {
+    if (!o.forvaltning) return false;
+    if (o.forvaltning.ansvarlig.kode !== filter.forvaltningsmyndighet)
+      return false;
+  }
   if (filter.vernet_år) {
     const year = new Date(o.revisjon.dato.vernet).getFullYear().toString();
     console.log(filter.vernet_år);

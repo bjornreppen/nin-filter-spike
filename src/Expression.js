@@ -51,10 +51,12 @@ const Expression = ({ onAdd, onClick, onDelete, domene: fallback, filter }) => {
 const Kriterie = ({ preText, label, onClick, onDelete }) => (
   <>
     {preText && (
-      <span style={{ whiteSpace: "nowrap", marginRight: 8 }}>{preText}</span>
+      <span style={{ whiteSpace: "nowrap", marginRight: 8, fontSize: 14 }}>
+        {preText}
+      </span>
     )}
     <Chip
-      style={{ marginRight: 8, marginBottom: 2, marginTop: 2 }}
+      style={{ marginRight: 8, marginBottom: 6, marginTop: 2 }}
       label={label}
       onClick={onClick}
       onDelete={onDelete}
