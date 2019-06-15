@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Resultatliste from "./Resultatliste";
-import filterdef from "./filter";
 
 const ResultatContainer = ({ filter }) => {
   const [områder, setOmråder] = useState([]);
@@ -44,6 +43,10 @@ function filtrer(o, filter) {
   }
   if (filter.truet_vurdering) {
     if (o.vurdering.truet.kode !== filter.truet_vurdering) return false;
+  }
+  if (filter.iucn) {
+    if (!o.vurdering.iucn) return false;
+    if (o.vurdering.iucn.kode !== filter.iucn) return false;
   }
   return true;
 }

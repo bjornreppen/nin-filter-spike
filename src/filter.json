@@ -75,8 +75,8 @@
   "areal": {
     "tittel": "Areal",
     "type": "range",
-    "min": 0,
-    "max": 1000,
-    "enhet": "km²"
+    "min": 100,
+    "max": 100000000,
+    "enhet": "m²"
   }
 }

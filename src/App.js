@@ -1,11 +1,49 @@
+import { red } from "@material-ui/core/colors";
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
-import Variabel from "./VelgVariabel";
+import Variabel from "./Variabel";
 import Verdi from "./Verdi";
 import Expression from "./Expression";
 import ResultatContainer from "./ResultatContainer";
-import { Paper } from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import {
+  Card,
+  Button,
+  Collapse,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  IconButton,
+  Typography
+} from "@material-ui/core";
+
+const useStyles = makeStyles(theme => ({
+  card: {
+    maxWidth: 345
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%" // 16:9
+  },
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest
+    })
+  },
+  expandOpen: {
+    transform: "rotate(180deg)"
+  },
+  avatar: {
+    backgroundColor: red[500]
+  }
+}));
 
 function App() {
+  const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(false);
   const [page, setPage] = useState("expression");
   const [variabel, setVariabel] = useState();
   const [filter, setFilter] = useState({
@@ -18,45 +56,85 @@ function App() {
     verneplan: "VV-VP-VM"
   });
 
+  function handleExpandClick() {
+    setExpanded(!expanded);
+  }
+
   return (
-    <Paper style={{ width: 470, padding: 16, margin: 24 }}>
-      {page === "expression" && (
-        <>
-          <Expression
-            domene="Naturvernområder"
-            filter={filter}
-            onClick={variabel => {
-              setVariabel(variabel);
-              setPage("verdi");
-            }}
-            onAdd={() => setPage("variable")}
-            onDelete={variabel => {
-              delete filter[variabel];
-              setFilter(Object.assign({}, filter));
-            }}
-          />
-          <ResultatContainer filter={filter} />
-        </>
-      )}
-      {page === "variable" && (
-        <Variabel
-          onSelect={variabel => {
-            setVariabel(variabel);
-            setPage("verdi");
-          }}
-        />
-      )}
-      {page === "verdi" && (
-        <Verdi
-          variabel={variabel}
-          onSelect={verdi => {
-            filter[variabel] = verdi;
-            setFilter(filter);
-            setPage("expression");
-          }}
-        />
-      )}
-    </Paper>
+    <>
+      <Card style={{ width: 470, margin: 24 }}>
+        {(true || page === "expression") && (
+          <>
+            <CardActionArea>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Naturvernområder
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  Lizards are a widespread group of squamate reptiles, with over
+                  6,000 species, ranging across all continents except Antarctica
+                </Typography>
+                <Expression
+                  domene="Naturvernområder"
+                  filter={filter}
+                  onClick={variabel => {
+                    setVariabel(variabel);
+                    setPage("verdi");
+                  }}
+                  onAdd={() => setPage("variable")}
+                  onDelete={variabel => {
+                    delete filter[variabel];
+                    setFilter(Object.assign({}, filter));
+                    setPage("expression");
+                  }}
+                />
+                {page === "variable" && (
+                  <Variabel
+                    onSelect={variabel => {
+                      setVariabel(variabel);
+                      setPage("verdi");
+                    }}
+                  />
+                )}
+                {page === "verdi" && (
+                  <Verdi
+                    variabel={variabel}
+                    onSelect={verdi => {
+                      filter[variabel] = verdi;
+                      setFilter(filter);
+                      setPage("expression");
+                    }}
+                  />
+                )}
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Button size="small" color="primary">
+                Share
+              </Button>
+              <Button size="small" color="primary">
+                Learn More
+              </Button>
+              <IconButton
+                className={clsx(classes.expand, {
+                  [classes.expandOpen]: expanded
+                })}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="Show more"
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <ResultatContainer filter={filter} />
+              </CardContent>
+            </Collapse>
+          </>
+        )}
+      </Card>
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
 import filter from "./filter";
+import MinMax from "./MinMax";
 
 const Verdi = ({ variabel, onSelect }) => {
   const felt = filter[variabel];
@@ -9,7 +10,7 @@ const Verdi = ({ variabel, onSelect }) => {
     <List>
       <ListSubheader>{felt.tittel}</ListSubheader>
       {felt.type === "range" ? (
-        <div>xxx</div>
+        <MinMax min={felt.min} max={felt.max} enhet={felt.enhet} />
       ) : (
         <Valgliste onSelect={onSelect} verdier={verdier} />
       )}

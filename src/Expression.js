@@ -1,4 +1,4 @@
-import { ListSubheader } from "@material-ui/core";
+import { Card, ListSubheader } from "@material-ui/core";
 import React from "react";
 import { Chip } from "@material-ui/core";
 import Add from "./Add";
@@ -14,7 +14,7 @@ const template = [
   "iucn"
 ];
 
-const Expression = ({ onAdd, onClick, onDelete, domene: fallback, filter }) => {
+const Expression = ({ onAdd, onClick, onDelete, fallback, filter }) => {
   let r = template.map(k => {
     const t = filterdef[k];
     if (!filter[k]) {
@@ -40,7 +40,7 @@ const Expression = ({ onAdd, onClick, onDelete, domene: fallback, filter }) => {
   });
   return (
     <>
-      <ListSubheader>Utvalg</ListSubheader>
+      <ListSubheader>{fallback}</ListSubheader>
       <div style={{ _display: "inline-flex" }}>
         {r} <Add onClick={onAdd} />
       </div>
@@ -51,7 +51,7 @@ const Expression = ({ onAdd, onClick, onDelete, domene: fallback, filter }) => {
 const Kriterie = ({ preText, label, onClick, onDelete }) => (
   <>
     {preText && (
-      <span style={{ whiteSpace: "nowrap", marginRight: 8, fontSize: 14 }}>
+      <span style={{ whiteSpace: "nowrap", marginRight: 4, fontSize: 13 }}>
         {preText}
       </span>
     )}

@@ -7,16 +7,14 @@ const Resultatliste = ({ items }) => {
       <ListSubheader>{items.length} områder</ListSubheader>
       {items.map(e => (
         <ListItem
+          dense
           button
           onClick={() => {
             window.open(e.lenke.wikipedia || e.lenke.verneforskrift);
           }}
           key={e.kode}
         >
-          <ListItemText
-            primary={e.navn.nob}
-            _secondary={e.verneform.navn.nob}
-          />
+          <ListItemText primary={e.navn.nob} />
         </ListItem>
       ))}
     </List>
