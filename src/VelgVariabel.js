@@ -8,7 +8,7 @@ const variabler = {
   fylke: "Fylke",
   vernet_år: "Vernet tidspunkt",
   truet_vurdering: "Truet vurdering",
-  iucn: "Verneområdets status (IUCN)"
+  iucn: "Verneområdets kategori (IUCN)"
 };
 
 const VelgVariabel = ({ onSelect }) => (

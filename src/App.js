@@ -10,7 +10,7 @@ function App() {
   const [variabel, setVariabel] = useState();
   const [filter, setFilter] = useState({
     verneform: "Landskapsverneområder",
-    vernet_år: 1950,
+    vernet_år: 1990,
     fylke: "Troms fylke",
     forvaltningsmyndighet: "Fylkesmann",
     truet_vurdering: "Truet",

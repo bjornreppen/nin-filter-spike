@@ -10,7 +10,7 @@ const template = [
   { felt: "vernet_år", pre: "opprettet i år" },
   { felt: "fylke", pre: "som helt eller delvis ligger i" },
   { felt: "truet_vurdering", pre: "vurdert som" },
-  { felt: "iucn", pre: "med IUCN status" }
+  { felt: "iucn", pre: "med IUCN kategori" }
 ];
 
 const Expression = ({ onAdd, onClick, onDelete, domene: fallback, filter }) => {

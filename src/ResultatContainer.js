@@ -27,6 +27,9 @@ function filtrer(o, filter) {
     }
     if (!match) return false;
   }
+  if (filter.truet_vurdering) {
+    if (o.vurdering.truet.navn.nob !== filter.truet_vurdering) return false;
+  }
   return true;
 }
 
