@@ -2,20 +2,22 @@ import { ListSubheader } from "@material-ui/core";
 import React from "react";
 import { Chip } from "@material-ui/core";
 import Add from "./Add";
+import filterdef from "./filter";
 
 const template = [
-  { felt: "verneform", pre: "", fallback: true },
-  { felt: "verneplan", pre: "vernet under" },
-  { felt: "forvaltningsmyndighet", pre: "som forvaltes av" },
-  { felt: "vernet_år", pre: "opprettet i år" },
-  { felt: "fylke", pre: "som helt eller delvis ligger i" },
-  { felt: "truet_vurdering", pre: "vurdert som" },
-  { felt: "iucn", pre: "med IUCN kategori" }
+  "verneform",
+  "verneplan",
+  "forvaltningsmyndighet",
+  "vernet_år",
+  "fylke",
+  "truet_vurdering",
+  "iucn"
 ];
 
 const Expression = ({ onAdd, onClick, onDelete, domene: fallback, filter }) => {
-  let r = template.map(t => {
-    if (!filter[t.felt]) {
+  let r = template.map(k => {
+    const t = filterdef[k];
+    if (!filter[k]) {
       if (t.fallback)
         return (
           <div style={{ marginRight: 8 }}>
@@ -26,11 +28,11 @@ const Expression = ({ onAdd, onClick, onDelete, domene: fallback, filter }) => {
     }
     return (
       <Kriterie
-        key={t.felt}
+        key={k}
         preText={t.pre}
-        label={filter[t.felt]}
-        onClick={() => onClick(t.felt)}
-        onDelete={() => onDelete(t.felt)}
+        label={filter[k]}
+        onClick={() => onClick(k)}
+        onDelete={() => onDelete(k)}
       />
     );
   });

@@ -1,6 +1,8 @@
 {
   "verneform": {
     "tittel": "Verneform",
+    "pre": "",
+    "fallback": true,
     "verdier": [
       "Biotopvern",
       "Landskapsverneområder",
@@ -11,6 +13,7 @@
   },
   "verneplan": {
     "tittel": "Verneplan",
+    "pre": "vernet etter",
     "verdier": [
       "Verneplan for myr",
       "Verneplan for sjøfugl",
@@ -22,6 +25,7 @@
   },
   "forvaltningsmyndighet": {
     "tittel": "Forvaltningsmyndighet",
+    "pre": "som forvaltes av",
     "verdier": [
       "Fylkesmann",
       "Kommune",
@@ -31,6 +35,7 @@
   },
   "fylke": {
     "tittel": "Fylke",
+    "pre": "som helt eller delvis ligger i",
     "verdier": [
       "Trøndelag fylke",
       "Nordland fylke",
@@ -40,14 +45,17 @@
   },
   "vernet_år": {
     "tittel": "Vernet tidspunkt",
+    "pre": "opprettet i år",
     "verdier": [1960, 1970, 1980, 1990, 2000, 2010]
   },
   "truet_vurdering": {
     "tittel": "Truet vurdering",
+    "pre": "vurdert som",
     "verdier": ["Ikke truet", "Truet", "Ikke vurdert"]
   },
   "iucn": {
     "tittel": "Verneområdets kategori (IUCN)",
+    "pre": "med IUCN kategori",
     "verdier": [
       "Vern av naturlige attraksjoner",
       "Vern av økosystemer og friluftsliv",
