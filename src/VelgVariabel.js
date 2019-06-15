@@ -1,20 +1,11 @@
 import React from "react";
 import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
-
-const variabler = {
-  verneform: "Verneform",
-  verneplan: "Verneplan",
-  forvaltningsmyndighet: "Forvaltningsmyndighet",
-  fylke: "Fylke",
-  vernet_år: "Vernet tidspunkt",
-  truet_vurdering: "Truet vurdering",
-  iucn: "Verneområdets kategori (IUCN)"
-};
+import filter from "./filter";
 
 const VelgVariabel = ({ onSelect }) => (
   <List>
     <ListSubheader>Filtrer på</ListSubheader>
-    {Object.entries(variabler).map(([k, v]) => (
+    {Object.entries(filter).map(([k, v]) => (
       <Element key={k} primary={v} onClick={() => onSelect(k)} />
     ))}
   </List>
