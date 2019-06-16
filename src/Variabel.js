@@ -4,7 +4,7 @@ import filter from "./filter";
 
 const Variabel = ({ onSelect }) => (
   <List>
-    <ListSubheader>Filtrer på</ListSubheader>
+    {false && <ListSubheader>Filtrer på</ListSubheader>}
     {Object.entries(filter).map(([k, v]) => (
       <Element key={k} primary={v.tittel} onClick={() => onSelect(k)} />
     ))}

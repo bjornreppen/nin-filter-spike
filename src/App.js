@@ -43,31 +43,33 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const all = {
+  verneform: { verdi: "VV-VF-LVO" },
+  vernet_år: {
+    verdi: "1990"
+  },
+  fylke: { verdi: "50" },
+  forvaltningsmyndighet: {
+    verdi: "VV-FM-FM"
+  },
+  truet_vurdering: { verdi: "VV-TV-T" },
+  iucn: {
+    verdi: "VV-PA-II"
+  },
+  verneplan: {
+    verdi: "VV-VP-VM"
+  },
+  areal: {
+    verdi: [100, 10000]
+  }
+};
+
 function App() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(true);
   const [page, setPage] = useState("expression");
   const [variabel, setVariabel] = useState();
-  const [filter, setFilter] = useState({
-    verneform: { verdi: "VV-VF-LVO" },
-    vernet_år: {
-      verdi: "1990"
-    },
-    fylke: { verdi: "50" },
-    forvaltningsmyndighet: {
-      verdi: "VV-FM-FM"
-    },
-    truet_vurdering: { verdi: "VV-TV-T" },
-    iucn: {
-      verdi: "VV-PA-II"
-    },
-    verneplan: {
-      verdi: "VV-VP-VM"
-    },
-    areal: {
-      verdi: [100, 10000]
-    }
-  });
+  const [filter, setFilter] = useState({});
 
   function handleExpandClick() {
     setExpanded(!expanded);
@@ -80,7 +82,7 @@ function App() {
           <>
             <CardActionArea
               _onClick={() =>
-                setPage(page === "expression" ? "variable" : "expression")
+                setPage(page !== "variable" ? "variable" : "expression")
               }
             >
               <CardMedia
@@ -102,10 +104,11 @@ function App() {
                 <Expression
                   domene="Naturvernområder"
                   filter={filter}
-                  onClick={variabel => {
-                    setVariabel(variabel);
-                    setPage("verdi");
+                  onClick={nyVariabel => {
+                    setVariabel(nyVariabel == variabel ? "" : nyVariabel);
+                    setPage(nyVariabel == variabel ? "expression" : "verdi");
                   }}
+                  valgtVariabel={variabel}
                   onAdd={() =>
                     setPage(page === "expression" ? "variable" : "expression")
                   }
@@ -126,7 +129,7 @@ function App() {
                 {page === "verdi" && (
                   <Verdi
                     variabel={variabel}
-                    verdi={filter[variabel].verdi}
+                    verdi={filter[variabel] && filter[variabel].verdi}
                     onSelect={verdi => {
                       filter[variabel] = filter[variabel] || {};
                       filter[variabel].verdi = verdi;

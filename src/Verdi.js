@@ -13,8 +13,8 @@ const Verdi = ({ variabel, verdi, onSelect }) => {
         <MinMax
           min={felt.min}
           max={felt.max}
-          fra={verdi[0] || felt.min}
-          til={verdi[1] || felt.max}
+          fra={(verdi && verdi[0]) || felt.min}
+          til={(verdi && verdi[1]) || felt.max}
           enhet={felt.enhet}
           onSelect={onSelect}
         />

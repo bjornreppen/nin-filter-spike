@@ -1,7 +1,7 @@
 import React from "react";
 import { ListItem, ListSubheader } from "@material-ui/core";
 import Slider from "@material-ui/lab/Slider";
-import { pretty, rangeTilTekst } from "./format";
+import { pretty } from "./format";
 
 function realValue(value) {
   return Math.pow(10, value);
@@ -63,20 +63,22 @@ const MinMax = ({ onSelect, fra, til, min, max, enhet }) => {
         />
       </ListItem>
       <ListSubheader>Mindre enn {pretty(til, enhet)}</ListSubheader>
-      <Slider
-        defaultValue={max}
-        min={Math.log10(min || 1)}
-        max={Math.log10(max)}
-        aria-labelledby="discrete-slider-always"
-        step={0.01}
-        marks={marks}
-        value={fraReal(til)}
-        _valueLabelDisplay="on"
-        onChange={(e, v) => {
-          const nyTil = realValue(v);
-          onSelect([nyTil > fra ? fra : nyTil, nyTil]);
-        }}
-      />
+      <ListItem>
+        <Slider
+          defaultValue={max}
+          min={Math.log10(min || 1)}
+          max={Math.log10(max)}
+          aria-labelledby="discrete-slider-always"
+          step={0.01}
+          marks={marks}
+          value={fraReal(til)}
+          _valueLabelDisplay="on"
+          onChange={(e, v) => {
+            const nyTil = realValue(v);
+            onSelect([nyTil > fra ? fra : nyTil, nyTil]);
+          }}
+        />
+      </ListItem>
     </div>
   );
 };

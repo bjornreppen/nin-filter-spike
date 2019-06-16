@@ -16,7 +16,14 @@ const template = [
   "areal"
 ];
 
-const Expression = ({ onAdd, onClick, onDelete, fallback, filter }) => {
+const Expression = ({
+  onAdd,
+  onClick,
+  onDelete,
+  fallback,
+  valgtVariabel,
+  filter
+}) => {
   let r = template.map(k => {
     const t = filterdef[k];
     if (!filter[k]) {
@@ -37,6 +44,7 @@ const Expression = ({ onAdd, onClick, onDelete, fallback, filter }) => {
         key={k}
         preText={t.pre}
         label={label}
+        valgt={k === valgtVariabel}
         onClick={() => onClick(k)}
         onDelete={() => onDelete(k)}
       />
@@ -51,7 +59,7 @@ const Expression = ({ onAdd, onClick, onDelete, fallback, filter }) => {
   );
 };
 
-const Kriterie = ({ preText, label, onClick, onDelete }) => (
+const Kriterie = ({ preText, label, valgt, onClick, onDelete }) => (
   <>
     {preText && (
       <Typography
@@ -65,6 +73,7 @@ const Kriterie = ({ preText, label, onClick, onDelete }) => (
     )}
     <Chip
       style={{ marginRight: 8, marginBottom: 6, marginTop: 2 }}
+      color={valgt ? "primary" : ""}
       label={label}
       onClick={onClick}
       onDelete={onDelete}

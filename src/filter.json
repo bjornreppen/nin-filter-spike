@@ -1,7 +1,7 @@
 {
   "verneform": {
     "tittel": "Verneform",
-    "pre": "Alle",
+    "pre": "",
     "fallback": true,
     "verdier": {
       "VV-VF-BV": "Biotopvern",
