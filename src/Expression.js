@@ -3,6 +3,7 @@ import React from "react";
 import { Chip } from "@material-ui/core";
 import Add from "./Add";
 import filterdef from "./filter";
+import { rangeTilTekst } from "./format";
 
 const template = [
   "verneform",
@@ -29,7 +30,7 @@ const Expression = ({ onAdd, onClick, onDelete, fallback, filter }) => {
     }
     let verdi = filter[k].verdi;
     let label = "";
-    if (t.type === "range") label = "22";
+    if (t.type === "range") label = rangeTilTekst(verdi[0], verdi[1], t.enhet);
     else label = t.verdier[verdi];
     return (
       <Kriterie
