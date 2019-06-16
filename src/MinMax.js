@@ -22,10 +22,10 @@ function pretty(v, enhet) {
 }
 
 const marks = [
-  {
+  /*  {
     value: 2,
     label: "0m²"
-  },
+  },*/
   {
     value: 3,
     label: "1daa" //"1000m²"
@@ -45,11 +45,11 @@ const marks = [
   {
     value: 7,
     label: "10km²" //"1000m²"
-  },
+  } /*,
   {
     value: 8,
     label: "100km²" //"1000m²"
-  }
+  }*/
 ];
 
 const MinMax = ({ onUpdate, min, max, enhet }) => {

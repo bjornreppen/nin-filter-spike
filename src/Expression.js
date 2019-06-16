@@ -40,7 +40,7 @@ const Expression = ({ onAdd, onClick, onDelete, fallback, filter }) => {
   });
   return (
     <>
-      <Add onClick={onAdd} />
+      {false && <Add onClick={onAdd} />}
       <ListSubheader>{fallback}</ListSubheader>
       <div style={{ _display: "inline-flex" }}>{r}</div>
     </>

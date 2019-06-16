@@ -7,6 +7,7 @@ import Verdi from "./Verdi";
 import Expression from "./Expression";
 import ResultatContainer from "./ResultatContainer";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Add from "./Add";
 import {
   Card,
   CardMedia,
@@ -81,6 +82,11 @@ function App() {
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
                   Naturvernområder
+                  <Add
+                    onClick={() =>
+                      setPage(page === "expression" ? "variable" : "expression")
+                    }
+                  />
                 </Typography>
                 {page === "variable" && (
                   <Variabel
