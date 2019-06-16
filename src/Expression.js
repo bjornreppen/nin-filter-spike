@@ -11,7 +11,8 @@ const template = [
   "forvaltningsmyndighet",
   "truet_vurdering",
   "iucn",
-  "fylke"
+  "fylke",
+  "areal"
 ];
 
 const Expression = ({ onAdd, onClick, onDelete, fallback, filter }) => {
@@ -26,8 +27,10 @@ const Expression = ({ onAdd, onClick, onDelete, fallback, filter }) => {
         );
       return null;
     }
-    const kode = filter[k];
-    const label = filterdef[k].verdier[kode];
+    let verdi = filter[k].verdi;
+    let label = "";
+    if (t.type === "range") label = "22";
+    else label = t.verdier[verdi];
     return (
       <Kriterie
         key={k}

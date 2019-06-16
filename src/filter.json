@@ -74,6 +74,7 @@
   },
   "areal": {
     "tittel": "Areal",
+    "pre": "med areal",
     "type": "range",
     "min": 100,
     "max": 100000000,

@@ -49,13 +49,24 @@ function App() {
   const [page, setPage] = useState("expression");
   const [variabel, setVariabel] = useState();
   const [filter, setFilter] = useState({
-    verneform: "VV-VF-LVO",
-    vernet_år: "1990",
-    fylke: "50",
-    forvaltningsmyndighet: "VV-FM-FM",
-    truet_vurdering: "VV-TV-T",
-    iucn: "VV-PA-II",
-    verneplan: "VV-VP-VM"
+    verneform: { verdi: "VV-VF-LVO" },
+    vernet_år: {
+      verdi: "1990"
+    },
+    fylke: { verdi: "50" },
+    forvaltningsmyndighet: {
+      verdi: "VV-FM-FM"
+    },
+    truet_vurdering: { verdi: "VV-TV-T" },
+    iucn: {
+      verdi: "VV-PA-II"
+    },
+    verneplan: {
+      verdi: "VV-VP-VM"
+    },
+    areal: {
+      verdi: [100, 10000]
+    }
   });
 
   function handleExpandClick() {
@@ -100,7 +111,8 @@ function App() {
                   <Verdi
                     variabel={variabel}
                     onSelect={verdi => {
-                      filter[variabel] = verdi;
+                      filter[variabel] = filter[variabel] || {};
+                      filter[variabel].verdi = verdi;
                       setFilter(Object.assign({}, filter));
                       setPage("expression");
                     }}
