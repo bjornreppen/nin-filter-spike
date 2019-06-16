@@ -1,11 +1,7 @@
-import React, { useState } from "react";
-import { Button, List as div, ListSubheader } from "@material-ui/core";
+import React from "react";
+import { ListItem, ListSubheader } from "@material-ui/core";
 import Slider from "@material-ui/lab/Slider";
-import { rangeTilTekst } from "./format";
-
-function valuetext(value) {
-  return `${value}°C`;
-}
+import { pretty, rangeTilTekst } from "./format";
 
 function realValue(value) {
   return Math.pow(10, value);
@@ -45,36 +41,32 @@ const marks = [
   }*/
 ];
 
-const MinMax = ({ onUpdate, min, max, enhet }) => {
-  const [fra, setFra] = useState(min);
-  const [til, setTil] = useState(max);
+const MinMax = ({ onSelect, fra, til, min, max, enhet }) => {
   return (
     <div>
-      {rangeTilTekst(fra, til, enhet)}
-      <ListSubheader>Fra</ListSubheader>
-      <Slider
-        defaultValue={min}
-        min={Math.log10(min || 1)}
-        max={Math.log10(max)}
-        getAriaValueText={valuetext}
-        valueLabelFormat={realValue}
-        aria-labelledby="discrete-slider-always"
-        step={0.01}
-        marks={marks}
-        value={fraReal(fra)}
-        _valueLabelDisplay="on"
-        onChange={(e, v) => {
-          const nyFra = realValue(v);
-          setFra(nyFra);
-          if (nyFra > til) setTil(nyFra);
-        }}
-      />
-      <ListSubheader>Til</ListSubheader>
+      <ListSubheader>Større enn {pretty(fra, enhet)}</ListSubheader>
+      <ListItem>
+        <Slider
+          defaultValue={min}
+          min={Math.log10(min || 1)}
+          max={Math.log10(max)}
+          valueLabelFormat={realValue}
+          aria-labelledby="discrete-slider-always"
+          step={0.01}
+          marks={marks}
+          value={fraReal(fra)}
+          _valueLabelDisplay="on"
+          onChange={(e, v) => {
+            const nyFra = realValue(v);
+            onSelect([nyFra, nyFra < til ? til : nyFra]);
+          }}
+        />
+      </ListItem>
+      <ListSubheader>Mindre enn {pretty(til, enhet)}</ListSubheader>
       <Slider
         defaultValue={max}
         min={Math.log10(min || 1)}
         max={Math.log10(max)}
-        getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-always"
         step={0.01}
         marks={marks}
@@ -82,13 +74,9 @@ const MinMax = ({ onUpdate, min, max, enhet }) => {
         _valueLabelDisplay="on"
         onChange={(e, v) => {
           const nyTil = realValue(v);
-          setTil(nyTil);
-          if (fra > nyTil) setFra(nyTil);
+          onSelect([nyTil > fra ? fra : nyTil, nyTil]);
         }}
       />
-      <Button variant="contained" color="primary">
-        OK
-      </Button>
     </div>
   );
 };

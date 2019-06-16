@@ -3,14 +3,21 @@ import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
 import filter from "./filter";
 import MinMax from "./MinMax";
 
-const Verdi = ({ variabel, onSelect }) => {
+const Verdi = ({ variabel, verdi, onSelect }) => {
   const felt = filter[variabel];
   const verdier = felt.verdier;
   return (
     <List>
       <ListSubheader>{felt.tittel}</ListSubheader>
       {felt.type === "range" ? (
-        <MinMax min={felt.min} max={felt.max} enhet={felt.enhet} />
+        <MinMax
+          min={felt.min}
+          max={felt.max}
+          fra={verdi[0] || felt.min}
+          til={verdi[1] || felt.max}
+          enhet={felt.enhet}
+          onSelect={onSelect}
+        />
       ) : (
         <Valgliste onSelect={onSelect} verdier={verdier} />
       )}

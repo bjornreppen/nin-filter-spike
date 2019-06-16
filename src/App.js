@@ -99,25 +99,6 @@ function App() {
                     }
                   />
                 </Typography>
-                {page === "variable" && (
-                  <Variabel
-                    onSelect={variabel => {
-                      setVariabel(variabel);
-                      setPage("verdi");
-                    }}
-                  />
-                )}
-                {page === "verdi" && (
-                  <Verdi
-                    variabel={variabel}
-                    onSelect={verdi => {
-                      filter[variabel] = filter[variabel] || {};
-                      filter[variabel].verdi = verdi;
-                      setFilter(Object.assign({}, filter));
-                      setPage("expression");
-                    }}
-                  />
-                )}
                 <Expression
                   domene="Naturvernområder"
                   filter={filter}
@@ -134,6 +115,26 @@ function App() {
                     setPage("expression");
                   }}
                 />
+                {page === "variable" && (
+                  <Variabel
+                    onSelect={variabel => {
+                      setVariabel(variabel);
+                      setPage("verdi");
+                    }}
+                  />
+                )}
+                {page === "verdi" && (
+                  <Verdi
+                    variabel={variabel}
+                    verdi={filter[variabel].verdi}
+                    onSelect={verdi => {
+                      filter[variabel] = filter[variabel] || {};
+                      filter[variabel].verdi = verdi;
+                      setFilter(Object.assign({}, filter));
+                      //                      setPage("expression");
+                    }}
+                  />
+                )}
               </CardContent>
             </CardActionArea>
             <CardActions>
