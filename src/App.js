@@ -3,7 +3,6 @@ import Variabel from "./Variabel";
 import Verdi from "./Verdi";
 import Expression from "./Expression";
 import ResultatContainer from "./ResultatContainer";
-import Add from "./Add";
 import { Card, CardMedia, CardContent, Typography } from "@material-ui/core";
 
 const all = {
@@ -46,10 +45,21 @@ function App() {
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 Naturvernområder
-                <Add
-                  onClick={() =>
-                    setPage(page !== "variable" ? "variable" : "expression")
-                  }
+                <Variabel
+                  aktive={filter}
+                  variabel={variabel}
+                  verdi={filter[variabel] && filter[variabel].verdi}
+                  onSelectVariable={variabel => {
+                    setVariabel(variabel);
+                    setPage("verdi");
+                  }}
+                  onSelectValue={verdi => {
+                    filter[variabel] = filter[variabel] || {};
+                    filter[variabel].verdi = verdi;
+                    setVariabel(null);
+                    setFilter(Object.assign({}, filter));
+                    //                      setPage("expression");
+                  }}
                 />
               </Typography>
               <Expression
@@ -58,6 +68,11 @@ function App() {
                 onClick={nyVariabel => {
                   setVariabel(nyVariabel === variabel ? "" : nyVariabel);
                   setPage(nyVariabel === variabel ? "expression" : "verdi");
+                }}
+                onSelectValue={(variabel, verdi) => {
+                  filter[variabel].verdi = verdi;
+                  setVariabel(null);
+                  setFilter(Object.assign({}, filter));
                 }}
                 valgtVariabel={variabel}
                 onAdd={() =>
@@ -69,27 +84,6 @@ function App() {
                   setPage("expression");
                 }}
               />
-              {page === "variable" && (
-                <Variabel
-                  aktive={filter}
-                  onSelect={variabel => {
-                    setVariabel(variabel);
-                    setPage("verdi");
-                  }}
-                />
-              )}
-              {page === "verdi" && (
-                <Verdi
-                  variabel={variabel}
-                  verdi={filter[variabel] && filter[variabel].verdi}
-                  onSelect={verdi => {
-                    filter[variabel] = filter[variabel] || {};
-                    filter[variabel].verdi = verdi;
-                    setFilter(Object.assign({}, filter));
-                    //                      setPage("expression");
-                  }}
-                />
-              )}
               <ResultatContainer filter={filter} />
             </CardContent>
           </>

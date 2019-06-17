@@ -1,9 +1,8 @@
-import { Typography, ListSubheader } from "@material-ui/core";
+import { ListSubheader } from "@material-ui/core";
 import React from "react";
-import { Chip } from "@material-ui/core";
-import Add from "./Add";
 import filterdef from "./filter";
 import { rangeTilTekst } from "./format";
+import Kriterie from "./Kriterie";
 
 const template = [
   "verneform",
@@ -16,20 +15,10 @@ const template = [
   "areal"
 ];
 
-const Tekst = ({ children }) => (
-  <Typography
-    variant="body2"
-    color="textSecondary"
-    component="span"
-    style={{ _whiteSpace: "nowrap", marginRight: 4, _fontSize: 13 }}
-  >
-    {children}
-  </Typography>
-);
-
 const Expression = ({
   onAdd,
   onClick,
+  onSelectValue,
   onDelete,
   fallback,
   valgtVariabel,
@@ -52,6 +41,8 @@ const Expression = ({
     else label = t.verdier[verdi];
     return (
       <Kriterie
+        variabel={k}
+        onSelectValue={onSelectValue}
         key={k}
         preText={t.pre}
         label={label}
@@ -63,24 +54,10 @@ const Expression = ({
   });
   return (
     <>
-      {false && <Add onClick={onAdd} />}
       <ListSubheader>{fallback}</ListSubheader>
       <div style={{ _display: "inline-flex" }}>{r}</div>
     </>
   );
 };
-
-const Kriterie = ({ preText, label, valgt, onClick, onDelete }) => (
-  <>
-    {preText && <Tekst>{preText}</Tekst>}
-    <Chip
-      style={{ marginRight: 8, marginBottom: 6, marginTop: 2 }}
-      color={valgt ? "primary" : ""}
-      label={label}
-      onClick={onClick}
-      onDelete={onDelete}
-    />
-  </>
-);
 
 export default Expression;
