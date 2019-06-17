@@ -1,3 +1,4 @@
+import filterdef from "./filter";
 import React, { useState } from "react";
 import Variabel from "./Variabel";
 import Expression from "./Expression";
@@ -26,66 +27,64 @@ const all = {
 };
 
 function App() {
-  const [page, setPage] = useState("expression");
   const [variabel, setVariabel] = useState();
   const [filter, setFilter] = useState(all);
 
   return (
     <>
       <Card style={{ width: 470, margin: 24 }}>
-        {(true || page === "expression") && (
-          <>
-            <CardMedia
-              component="img"
-              height="210"
-              image="cardmedia.jpg"
-              title="--"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                Naturvernområder
-                <Variabel
-                  aktive={filter}
-                  onSelectVariable={variabel => {
-                    setVariabel(variabel);
-                    filter[variabel] = filter[variabel] || {};
-                    filter[variabel].verdi = "???";
-                    setFilter(Object.assign({}, filter));
-                    setPage("verdi");
-                  }}
-                />
-              </Typography>
-              <Expression
-                domene="Naturvernområder"
-                filter={filter}
-                onClick={nyVariabel => {
-                  setVariabel(nyVariabel === variabel ? "" : nyVariabel);
-                  setPage(nyVariabel === variabel ? "expression" : "verdi");
-                }}
-                onSelectValue={(variabel, verdi) => {
-                  filter[variabel].verdi = verdi;
-                  setVariabel(null);
-                  setFilter(Object.assign({}, filter));
-                }}
-                onSetValue={(variabel, verdi) => {
-                  filter[variabel].verdi = verdi;
-                  setFilter(Object.assign({}, filter));
-                  console.log(filter);
-                }}
+        <>
+          <CardMedia
+            component="img"
+            height="210"
+            image="cardmedia.jpg"
+            title="--"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              Naturvernområder
+              <Variabel
+                aktive={filter}
                 onSelectVariable={variabel => {
                   setVariabel(variabel);
-                }}
-                valgtVariabel={variabel}
-                onDelete={variabel => {
-                  delete filter[variabel];
+                  if (!variabel) return;
+                  filter[variabel] = filter[variabel] || {};
+                  filter[variabel].verdi = Object.keys(
+                    filterdef[variabel].verdier
+                  )[0];
+                  console.warn(filter);
                   setFilter(Object.assign({}, filter));
-                  setPage("expression");
                 }}
               />
-              <ResultatContainer filter={filter} />
-            </CardContent>
-          </>
-        )}
+            </Typography>
+            <Expression
+              domene="Naturvernområder"
+              filter={filter}
+              onClick={nyVariabel => {
+                setVariabel(nyVariabel === variabel ? "" : nyVariabel);
+              }}
+              onSelectValue={(variabel, verdi) => {
+                filter[variabel].verdi = verdi;
+                setVariabel(null);
+                setFilter(Object.assign({}, filter));
+              }}
+              onSetValue={(variabel, verdi) => {
+                filter[variabel].verdi = verdi;
+                setFilter(Object.assign({}, filter));
+                console.log(filter);
+              }}
+              onSelectVariable={variabel => {
+                setVariabel(variabel);
+              }}
+              valgtVariabel={variabel}
+              onDelete={variabel => {
+                delete filter[variabel];
+                setFilter(Object.assign({}, filter));
+              }}
+            />
+            <ResultatContainer filter={filter} />
+          </CardContent>
+        </>
       </Card>
     </>
   );

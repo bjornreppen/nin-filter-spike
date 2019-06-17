@@ -17,9 +17,11 @@ const Variabel = ({ onSelectVariable, aktive }) => {
 
   function handleSelect(v) {
     handleClose();
+    console.warn("--", v);
     onSelectVariable(v);
   }
-
+  console.log(aktive);
+  console.log(filter);
   if (Object.keys(aktive).length >= Object.keys(filter).length) return null;
   return (
     <div style={{ position: "relative", display: "inline" }}>
