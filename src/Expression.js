@@ -16,6 +16,17 @@ const template = [
   "areal"
 ];
 
+const Tekst = ({ children }) => (
+  <Typography
+    variant="body2"
+    color="textSecondary"
+    component="span"
+    style={{ _whiteSpace: "nowrap", marginRight: 4, _fontSize: 13 }}
+  >
+    {children}
+  </Typography>
+);
+
 const Expression = ({
   onAdd,
   onClick,
@@ -61,16 +72,7 @@ const Expression = ({
 
 const Kriterie = ({ preText, label, valgt, onClick, onDelete }) => (
   <>
-    {preText && (
-      <Typography
-        variant="body2"
-        color="textSecondary"
-        component="span"
-        style={{ _whiteSpace: "nowrap", marginRight: 4, _fontSize: 13 }}
-      >
-        {preText}
-      </Typography>
-    )}
+    {preText && <Tekst>{preText}</Tekst>}
     <Chip
       style={{ marginRight: 8, marginBottom: 6, marginTop: 2 }}
       color={valgt ? "primary" : ""}

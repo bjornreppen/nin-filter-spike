@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import Resultatliste from "./Resultatliste";
 
 const ResultatContainer = ({ filter }) => {
-  const [områder, setOmråder] = useState([]);
-  const [filtrert, setFiltrert] = useState([]);
+  const [områder, setOmråder] = useState(null);
+  const [filtrert, setFiltrert] = useState(null);
   useEffect(() => {
-    console.log("load");
     fetch("naturvernområde.json").then(r =>
       r.json().then(json => setOmråder(json.items))
     );
   }, []);
   useEffect(() => {
-    console.log("filter");
+    if (!områder) return;
     const e = områder.filter(o => erTreff(o, filter));
     const sortert = e.sort((a, b) => (a.navn.nob > b.navn.nob ? 1 : -1));
     setFiltrert(sortert);

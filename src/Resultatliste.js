@@ -1,7 +1,15 @@
 import React from "react";
-import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
+import {
+  List,
+  ListItem,
+  CircularProgress,
+  ListItemText,
+  ListSubheader
+} from "@material-ui/core";
 
 const Resultatliste = ({ items }) => {
+  console.log(items);
+  if (!items) return <CircularProgress />;
   return (
     <List>
       <ListSubheader>{items.length} områder</ListSubheader>

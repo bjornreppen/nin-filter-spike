@@ -1,5 +1,12 @@
 import React from "react";
-import { List, ListItem, ListItemText, ListSubheader } from "@material-ui/core";
+import {
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  ListSubheader
+} from "@material-ui/core";
+import { Check } from "@material-ui/icons/";
 import filter from "./filter";
 import MinMax from "./MinMax";
 
@@ -19,20 +26,28 @@ const Verdi = ({ variabel, verdi, onSelect }) => {
           onSelect={onSelect}
         />
       ) : (
-        <Valgliste onSelect={onSelect} verdier={verdier} />
+        <Valgliste onSelect={onSelect} valgt={verdi} verdier={verdier} />
       )}
     </List>
   );
 };
 
-const Valgliste = ({ onSelect, verdier }) =>
+const Valgliste = ({ onSelect, verdier, valgt }) =>
   Object.entries(verdier).map(([k, v]) => {
     console.log(k, v);
-    return <Element key={k} primary={v} onClick={() => onSelect(k)} />;
+    return (
+      <Element
+        key={k}
+        checked={valgt === k}
+        primary={v}
+        onClick={() => onSelect(k)}
+      />
+    );
   });
 
-const Element = ({ primary, onClick }) => (
-  <ListItem button onClick={onClick}>
+const Element = ({ primary, checked, onClick }) => (
+  <ListItem selected={checked} button onClick={onClick}>
+    <ListItemAvatar>{checked && <Check />}</ListItemAvatar>
     <ListItemText primary={primary} />
   </ListItem>
 );
