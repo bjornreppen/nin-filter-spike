@@ -18,20 +18,13 @@ const Verdi = ({ variabel, verdi, onSelect }) => {
       />
     );
 
-  return (
-    <>
-      <Valgliste onSelect={onSelect} valgt={verdi} verdier={verdier} />
-    </>
-  );
-};
-
-const Valgliste = ({ onSelect, verdier, valgt }) =>
-  Object.entries(verdier).map(([k, v]) => {
+  return Object.entries(verdier).map(([k, v]) => {
     return (
-      <MenuItem key={k} selected={valgt === k} onClick={() => onSelect(k)}>
+      <MenuItem key={k} onClick={() => onSelect(k)}>
         {v}
       </MenuItem>
     );
   });
+};
 
 export default Verdi;

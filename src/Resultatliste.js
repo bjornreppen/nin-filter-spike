@@ -8,7 +8,6 @@ import {
 } from "@material-ui/core";
 
 const Resultatliste = ({ items }) => {
-  console.log(items);
   if (!items) return <CircularProgress />;
   return (
     <List>

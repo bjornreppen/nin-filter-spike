@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Variabel from "./Variabel";
-import Verdi from "./Verdi";
 import Expression from "./Expression";
 import ResultatContainer from "./ResultatContainer";
 import { Card, CardMedia, CardContent, Typography } from "@material-ui/core";
@@ -29,7 +28,7 @@ const all = {
 function App() {
   const [page, setPage] = useState("expression");
   const [variabel, setVariabel] = useState();
-  const [filter, setFilter] = useState({});
+  const [filter, setFilter] = useState(all);
 
   return (
     <>
@@ -47,18 +46,12 @@ function App() {
                 Naturvernområder
                 <Variabel
                   aktive={filter}
-                  variabel={variabel}
-                  verdi={filter[variabel] && filter[variabel].verdi}
                   onSelectVariable={variabel => {
                     setVariabel(variabel);
-                    setPage("verdi");
-                  }}
-                  onSelectValue={verdi => {
                     filter[variabel] = filter[variabel] || {};
-                    filter[variabel].verdi = verdi;
-                    setVariabel(null);
+                    filter[variabel].verdi = "???";
                     setFilter(Object.assign({}, filter));
-                    //                      setPage("expression");
+                    setPage("verdi");
                   }}
                 />
               </Typography>
@@ -74,10 +67,15 @@ function App() {
                   setVariabel(null);
                   setFilter(Object.assign({}, filter));
                 }}
+                onSetValue={(variabel, verdi) => {
+                  filter[variabel].verdi = verdi;
+                  setFilter(Object.assign({}, filter));
+                  console.log(filter);
+                }}
+                onSelectVariable={variabel => {
+                  setVariabel(variabel);
+                }}
                 valgtVariabel={variabel}
-                onAdd={() =>
-                  setPage(page === "expression" ? "variable" : "expression")
-                }
                 onDelete={variabel => {
                   delete filter[variabel];
                   setFilter(Object.assign({}, filter));

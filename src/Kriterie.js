@@ -1,7 +1,8 @@
-import { IconButton, Menu, MenuItem } from "@material-ui/core/";
+import { Menu } from "@material-ui/core/";
 import React from "react";
-import { Chip, Typography } from "@material-ui/core";
-import Verdi from "./Verdi";
+import { MenuItem, Chip, Typography } from "@material-ui/core";
+import filter from "./filter";
+import MinMax from "./MinMax";
 
 const Tekst = ({ children }) => (
   <Typography
@@ -14,61 +15,74 @@ const Tekst = ({ children }) => (
   </Typography>
 );
 
-const Kriterie = ({
+function Kriterie({
   preText,
   variabel,
   label,
-  valgt,
+  verdi,
+  erValgt,
   onClick,
+  onSelectVariable,
+  onSetValue,
   onSelectValue,
   onDelete
-}) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+}) {
+  const anchorEl = React.useRef(null);
 
   function handleClick(event) {
-    setAnchorEl(event.currentTarget);
     onClick(event);
   }
 
   function handleClose() {
-    setAnchorEl(null);
+    onSelectVariable(null);
   }
 
-  function handleSelectValue(verdi) {
-    handleClose();
-    onSelectValue(variabel, verdi);
-  }
-
+  const felt = filter[variabel];
+  const verdier = felt.verdier;
   return (
     <>
       {preText && <Tekst>{preText}</Tekst>}
       <Chip
         style={{ marginRight: 8, marginBottom: 6, marginTop: 2 }}
-        color={valgt ? "primary" : ""}
+        color={erValgt ? "primary" : "default"}
         label={label}
         onClick={handleClick}
         onDelete={onDelete}
+        ref={anchorEl}
       />
-      <Menu
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left"
-        }}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {anchorEl && (
-          <Verdi
-            variabel={variabel}
-            verdi={valgt}
-            onSelect={handleSelectValue}
-          />
-        )}
-      </Menu>
+      {felt.type === "range" && erValgt ? (
+        <MinMax
+          min={felt.min}
+          max={felt.max}
+          fra={(verdi && verdi[0]) || felt.min}
+          til={(verdi && verdi[1]) || felt.max}
+          enhet={felt.enhet}
+          onSelect={v => onSetValue(variabel, v)}
+          onSelectVariable={onSelectVariable}
+        />
+      ) : (
+        anchorEl.current &&
+        erValgt && (
+          <Menu
+            anchorEl={anchorEl.current}
+            transformOrigin={{ vertical: -50, horizontal: 0 }}
+            keepMounted
+            open={erValgt}
+            onClose={handleClose}
+            elevation={1}
+          >
+            {Object.entries(verdier).map(([k, v]) => {
+              return (
+                <MenuItem key={k} onClick={() => onSelectValue(variabel, k)}>
+                  {v}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+        )
+      )}
     </>
   );
-};
+}
 
 export default Kriterie;

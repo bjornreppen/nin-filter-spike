@@ -1,16 +1,9 @@
-import Verdi from "./Verdi";
 import React from "react";
 import filter from "./filter";
 import { IconButton, Menu, MenuItem } from "@material-ui/core/";
 import FilterListIcon from "@material-ui/icons/FilterList";
 
-const Variabel = ({
-  onSelectValue,
-  onSelectVariable,
-  variabel,
-  verdi,
-  aktive
-}) => {
+const Variabel = ({ onSelectVariable, aktive }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   function handleClick(event) {
@@ -23,14 +16,11 @@ const Variabel = ({
   }
 
   function handleSelect(v) {
+    handleClose();
     onSelectVariable(v);
   }
 
-  function handleSelectValue(v) {
-    handleClose();
-    onSelectValue(v);
-  }
-
+  if (Object.keys(aktive).length >= Object.keys(filter).length) return null;
   return (
     <div style={{ position: "relative", display: "inline" }}>
       <IconButton
@@ -43,30 +33,18 @@ const Variabel = ({
       </IconButton>
       <Menu
         anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right"
-        }}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {variabel ? (
-          <Verdi
-            variabel={variabel}
-            verdi={verdi}
-            onSelect={handleSelectValue}
-          />
-        ) : (
-          Object.entries(filter).map(([k, v]) => {
-            if (aktive[k]) return null;
-            return (
-              <MenuItem key={k} onClick={() => handleSelect(k)}>
-                {v.tittel}
-              </MenuItem>
-            );
-          })
-        )}
+        {Object.entries(filter).map(([k, v]) => {
+          if (aktive[k]) return null;
+          return (
+            <MenuItem key={k} onClick={() => handleSelect(k)}>
+              {v.tittel}
+            </MenuItem>
+          );
+        })}
       </Menu>
     </div>
   );

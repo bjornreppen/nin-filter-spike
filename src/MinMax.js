@@ -1,6 +1,13 @@
 import React from "react";
-import { ListItem, ListSubheader } from "@material-ui/core";
-import Slider from "@material-ui/lab/Slider";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  DialogContentText,
+  Button
+} from "@material-ui/core";
+import { Slider } from "@material-ui/lab";
 import { pretty } from "./format";
 
 function realValue(value) {
@@ -41,11 +48,12 @@ const marks = [
   }*/
 ];
 
-const MinMax = ({ onSelect, fra, til, min, max, enhet }) => {
+const MinMax = ({ onSelect, onSelectVariable, fra, til, min, max, enhet }) => {
   return (
-    <div>
-      <ListSubheader>Større enn {pretty(fra, enhet)}</ListSubheader>
-      <ListItem>
+    <Dialog open="true" fullWidth={true} onClose={() => onSelectVariable(null)}>
+      <DialogTitle id="form-dialog-title">Areal</DialogTitle>
+      <DialogContent>
+        <DialogContentText>Større enn {pretty(fra, enhet)}</DialogContentText>
         <Slider
           defaultValue={min}
           min={Math.log10(min || 1)}
@@ -55,15 +63,12 @@ const MinMax = ({ onSelect, fra, til, min, max, enhet }) => {
           step={0.01}
           marks={marks}
           value={fraReal(fra)}
-          _valueLabelDisplay="on"
           onChange={(e, v) => {
             const nyFra = realValue(v);
             onSelect([nyFra, nyFra < til ? til : nyFra]);
           }}
         />
-      </ListItem>
-      <ListSubheader>Mindre enn {pretty(til, enhet)}</ListSubheader>
-      <ListItem>
+        <DialogContentText>Mindre enn {pretty(til, enhet)}</DialogContentText>
         <Slider
           defaultValue={max}
           min={Math.log10(min || 1)}
@@ -72,14 +77,18 @@ const MinMax = ({ onSelect, fra, til, min, max, enhet }) => {
           step={0.01}
           marks={marks}
           value={fraReal(til)}
-          _valueLabelDisplay="on"
           onChange={(e, v) => {
             const nyTil = realValue(v);
             onSelect([nyTil > fra ? fra : nyTil, nyTil]);
           }}
         />
-      </ListItem>
-    </div>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => onSelectVariable(null)} color="primary">
+          OK
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 

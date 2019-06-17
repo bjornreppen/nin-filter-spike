@@ -1,4 +1,3 @@
-import { ListSubheader } from "@material-ui/core";
 import React from "react";
 import filterdef from "./filter";
 import { rangeTilTekst } from "./format";
@@ -16,9 +15,10 @@ const template = [
 ];
 
 const Expression = ({
-  onAdd,
   onClick,
+  onSelectVariable,
   onSelectValue,
+  onSetValue,
   onDelete,
   fallback,
   valgtVariabel,
@@ -43,21 +43,19 @@ const Expression = ({
       <Kriterie
         variabel={k}
         onSelectValue={onSelectValue}
+        onSelectVariable={onSelectVariable}
+        onSetValue={onSetValue}
         key={k}
+        verdi={verdi}
         preText={t.pre}
         label={label}
-        valgt={k === valgtVariabel}
+        erValgt={k === valgtVariabel}
         onClick={() => onClick(k)}
         onDelete={() => onDelete(k)}
       />
     );
   });
-  return (
-    <>
-      <ListSubheader>{fallback}</ListSubheader>
-      <div style={{ _display: "inline-flex" }}>{r}</div>
-    </>
-  );
+  return <div style={{ _display: "inline-flex" }}>{r}</div>;
 };
 
 export default Expression;

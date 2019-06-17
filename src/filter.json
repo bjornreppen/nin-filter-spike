@@ -2,7 +2,6 @@
   "verneform": {
     "tittel": "Verneform",
     "pre": "",
-    "fallback": "områder",
     "verdier": {
       "VV-VF-BV": "Biotopvern",
       "VV-VF-LVO": "Landskapsverneområder",
