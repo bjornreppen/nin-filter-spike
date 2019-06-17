@@ -55,7 +55,8 @@ function erTreff(o, filter) {
   if (filter.areal) {
     if (!o.geografi.areal) return false;
     if (o.geografi.areal < filter.areal.verdi[0]) return false;
-    if (o.geografi.areal > filter.areal.verdi[1]) return false;
+    if (filter.areal.verdi[1] < 100000000)
+      if (o.geografi.areal > filter.areal.verdi[1]) return false;
   }
   return true;
 }

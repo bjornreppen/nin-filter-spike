@@ -16,6 +16,7 @@ const Tekst = ({ children }) => (
 );
 
 function Kriterie({
+  aktiv,
   preText,
   variabel,
   label,
@@ -40,9 +41,10 @@ function Kriterie({
   const felt = filter[variabel];
   const verdier = felt.verdier;
   return (
-    <>
+    <span style={{ display: aktiv ? "" : "none" }}>
       {preText && <Tekst>{preText}</Tekst>}
       <Chip
+        key={variabel}
         style={{ marginRight: 8, marginBottom: 6, marginTop: 2 }}
         color={erValgt ? "primary" : "default"}
         label={label}
@@ -81,7 +83,7 @@ function Kriterie({
           </Menu>
         )
       )}
-    </>
+    </span>
   );
 }
 

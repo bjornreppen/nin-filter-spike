@@ -28,7 +28,7 @@ const all = {
 
 function App() {
   const [variabel, setVariabel] = useState();
-  const [filter, setFilter] = useState(all);
+  const [filter, setFilter] = useState({});
 
   return (
     <>
@@ -49,10 +49,7 @@ function App() {
                   setVariabel(variabel);
                   if (!variabel) return;
                   filter[variabel] = filter[variabel] || {};
-                  filter[variabel].verdi = Object.keys(
-                    filterdef[variabel].verdier
-                  )[0];
-                  console.warn(filter);
+                  filter[variabel].verdi = filterdef[variabel].default;
                   setFilter(Object.assign({}, filter));
                 }}
               />
@@ -71,7 +68,6 @@ function App() {
               onSetValue={(variabel, verdi) => {
                 filter[variabel].verdi = verdi;
                 setFilter(Object.assign({}, filter));
-                console.log(filter);
               }}
               onSelectVariable={variabel => {
                 setVariabel(variabel);

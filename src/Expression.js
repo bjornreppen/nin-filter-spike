@@ -20,22 +20,12 @@ const Expression = ({
   onSelectValue,
   onSetValue,
   onDelete,
-  fallback,
   valgtVariabel,
   filter
 }) => {
   let r = template.map(k => {
     const t = filterdef[k];
-    if (!filter[k]) {
-      if (t.fallback)
-        return (
-          <div style={{ marginRight: 8 }}>
-            <span>{fallback}</span>
-          </div>
-        );
-      return null;
-    }
-    let verdi = filter[k].verdi;
+    let verdi = filter[k] ? filter[k].verdi : {};
     let label = "";
     if (t.type === "range") label = rangeTilTekst(verdi[0], verdi[1], t.enhet);
     else label = t.verdier[verdi];
@@ -46,6 +36,7 @@ const Expression = ({
         onSelectVariable={onSelectVariable}
         onSetValue={onSetValue}
         key={k}
+        aktiv={filter[k]}
         verdi={verdi}
         preText={t.pre}
         label={label}
