@@ -1,5 +1,3 @@
-import { red } from "@material-ui/core/colors";
-import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
 import Variabel from "./Variabel";
 import Verdi from "./Verdi";
@@ -30,7 +28,6 @@ const all = {
 };
 
 function App() {
-  const [expanded, setExpanded] = useState(true);
   const [page, setPage] = useState("expression");
   const [variabel, setVariabel] = useState();
   const [filter, setFilter] = useState({});
@@ -59,8 +56,8 @@ function App() {
                 domene="Naturvernområder"
                 filter={filter}
                 onClick={nyVariabel => {
-                  setVariabel(nyVariabel == variabel ? "" : nyVariabel);
-                  setPage(nyVariabel == variabel ? "expression" : "verdi");
+                  setVariabel(nyVariabel === variabel ? "" : nyVariabel);
+                  setPage(nyVariabel === variabel ? "expression" : "verdi");
                 }}
                 valgtVariabel={variabel}
                 onAdd={() =>

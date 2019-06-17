@@ -19,8 +19,6 @@ const ResultatContainer = ({ filter }) => {
   return <Resultatliste items={filtrert} />;
 };
 
-async function filtrer(områder) {}
-
 function erTreff(o, filter) {
   if (filter.verneform) {
     if (!o.verneform) return false;
